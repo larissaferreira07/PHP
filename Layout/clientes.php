@@ -62,49 +62,70 @@
                 </div>
             </nav>
 
-            <?php
+             <div class="buscar">
+                    <form action="buscar.php" method="POST">
+                        <input name="operacao" value="buscar" id="search-input" type="search" id="form1" class="form-control w-25" placeholder="Buscar"/>
+                        <button  type="submit" class="btn btn-primary mx-2">
+                    <i class="fas fa-search"></i>
+                   </form>
+            </div>
 
-            $sql= "SELECT * FROM paciente";
-            $res= mysqli_query($mysqli,$sql);
-            $linhas= mysqli_num_rows($res);
-
-            ?>
 
             <div class="block">
-            <div class='container'>
-                    <h1>Tabela Paciente</h1>
-                    <table class='table'>
-                    <thead>
-                    <tr>
-                    <th></th>
-                    <th>Nome</th>
-                    <th>CPF
-                    <th>Telefone</th>
-                    <th>Data de Nascimento</th>
-                    <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                         for ($i = 0; $i < $linhas; $i++){
-                            $paciente = mysqli_fetch_array ($res);
-                
-                            echo"
-                            <tr>
-                            <td>".$paciente['nome']."</td>
-                            <td>".$paciente['cpf']."</td>
-                            <td>".$paciente['telefone']."</td>
-                            <td>".$paciente['data_nasc']."</td>
-                            <td>".$paciente['email']."</td>
-                            </tr>";
-                        }
-                        ?>
+                <section class="intro">
+                    <div class="gradient-custom-1 h-100">
+                        <div class="mask d-flex align-items-center h-100">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="table-responsive bg-white">
+                                <table class="table mb-0  table-striped ">
+                                    <thead class="color">
+                                    <tr>
+                                        <th scope="col">NOME</th>
+                                        <th scope="col">CPF</th>
+                                        <th scope="col">TELEFONE</th>
+                                        <th scope="col">DATA_NASC</th>
+                                        <th scope="col">EMAIL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                    </tbody>
-                    </table>
-                    </div>
-                    </div>
+                                    <?php
 
+                                    if($operacao== "exibir"){
+                                        $sql= "SELECT * FROM paciente";
+                                        $res= mysqli_query($mysqli,$sql);
+                                        $linhas= mysqli_num_rows($res);
+
+                                        for ($i = 0; $i < $linhas; $i++){
+                                            $cliente = mysqli_fetch_array ($res);
+
+                                            echo"
+                                            <tr>
+                                            <td>".$paciente['nome']."</td>
+                                            <td>".$paciente['cpf']."</td>
+                                            <td>".$paciente['telefone']."</td>
+                                            <td>".$paciente['data_nasc']."</td>
+                                            <td>".$paciente['email']."</td>
+                                            </tr>";
+                                            
+                                        }
+
+                                    }
+
+                                    ?>
+                                    
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                 </section>
+                </div>
 
 
 
