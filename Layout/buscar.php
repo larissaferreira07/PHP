@@ -1,4 +1,3 @@
-<?php include "conecta_mysql.inc"; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="_css/perfil.css" />
-    <link rel="stylesheet" href="_css/form.css" />
 
     <title>Perfil Admin</title>
 </head>
@@ -169,33 +167,30 @@
 
                                     <?php
 
-                                       
-                                      $operacao = $_REQUEST ["operacao"]
-                                
-                                      if($operacao== "buscar"){
-                                      $nome = $_POST["nome"];
+                                    include "conecta_mysql.inc";
 
-                                       $sql= "SELECT * FROM cliente WHERE nome like '%$nome%';";
-                                       $res= mysqli_query($mysqli,$sql);
-                                       $linhas= mysqli_num_rows($res);
+                                    $operacao = $_REQUEST ["operacao"];
+
+                                    if($operacao== "buscar"){
+                                        $nome = $_POST["nome"];
+                                        $sql= "SELECT * FROM paciente WHERE nome like '%$nome%';";
+                                        $res= mysqli_query($mysqli,$sql);
+                                        $linhas= mysqli_num_rows($res);
 
                                         for ($i = 0; $i < $linhas; $i++){
                                             $paciente = mysqli_fetch_array ($res);
-
-                                            echo"
-                                            <tr>
-                                            <td>".$paciente['nome']."</td>
-                                            <td>".$paciente['cpf']."</td>
-                                            <td>".$paciente['telefone']."</td>
-                                            <td>".$paciente['data_nasc']."</td>
-                                            <td>".$paciente['email']."</td>
-                                            </tr>";
                                             
-                                        }
-                                    }
-
+                                            echo"
+                                                <tr>
+                                                <td>".$paciente['nome']."</td>
+                                                <td>".$paciente['cpf']."</td>
+                                                <td>".$paciente['telefone']."</td>
+                                                <td>".$paciente['data_nasc']."</td>
+                                                <td>".$paciente['email']."</td>
+                                                </tr>";
+                                                }
+                                            }
                                     ?>
-                                    
                                     </tbody>
                                 </table>
                                 </div>
