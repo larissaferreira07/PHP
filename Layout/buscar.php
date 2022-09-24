@@ -1,5 +1,8 @@
-<html>
-  <head>
+<?php include "conecta_mysql.inc"; ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +11,10 @@
     <link rel="stylesheet" href="_css/perfil.css" />
     <link rel="stylesheet" href="_css/form.css" />
 
-    <title>Buscar</title>
-  </head>
+    <title>Perfil Admin</title>
+</head>
 
+<body>
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
@@ -58,42 +62,127 @@
                     </ul>
                 </div>
             </nav>
-            
-                        
-                        
-                <div class="block">
-                    <div class='container'>
-                        <h1>Tabela Paciente</h1>
-                        <table class='table'>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>CPF
-                                    <th>Telefone</th>
-                                    <th>Data de Nascimento</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <?php
+    
+           <div id="servicos" class="block">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                  <a href="#" class="destaque">
+                    <div class="img-container mb-3">
+                      <img src="_img/Hospital building-cuate.svg" class="img-fluid">
+                    </div>
+                    <h5 class="text-uppercase">Cadastrar <br> Serviço</h5>
+                  </a>
+                </div>
                 
-                                $operacao = $_REQUEST ["operacao"]
-                                
-                                if($operacao== "buscar"){
-                                    $nome = $_POST["nome"];
-                                    $sql= "SELECT * FROM cliente WHERE nome like '%$nome%';";
-                                    $res= mysqli_query($mysqli,$sql);
-                                    $linhas= mysqli_num_rows($res);
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                  <a href="#" class="destaque">
+                    <div class="img-container mb-3">
+                      <img src="_img/Doctors-bro.svg" class="mg-fluid">
+                    </div>
+                    <h5 class="text-uppercase">Cadastrar<br>Funcionário</h5>
+                  </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                  <a href="#" class="destaque">
+                    <div class="img-container mb-3">
+                      <img src="_img/Events-bro.svg" class="img-fluid">
+                    </div>
+                    <h5 class="text-uppercase">Cadastrar<br>Data/Horário</h5>
+                  </a>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                  <a href="cad_admin.html" class="destaque">
+                    <div class="img-container mb-3">
+                      <img src="_img/Computer troubleshooting-pana.svg" class="img-fluid">
+                    </div>
+                    <h5 class="text-uppercase">Cadastrar<br>Adm</h5>
+                  </a>
+                </div>
+              
+              </div>
+            </div>
+          </div>
 
-                                    $sql= "SELECT * FROM paciente";
-                                    $res= mysqli_query($mysqli,$sql);
-                                    $linhas= mysqli_num_rows($res);
-                                    
-                                    for ($i = 0; $i < $linhas; $i++){
-                                        $paciente = mysqli_fetch_array ($res);
-                                        
-                                        echo"
+          <div id="cad_clientte" class="block">
+            <div class="container">
+
+              <div class="registration-form">
+                <form>
+                    <div class="form-icon">
+                        <span><i class="icon fas fa-hospital"></i></span>
+                    </div>
+                    
+                    <h5 class="text-uppercase">Cadastrar Funcionário:</h5>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="username" placeholder="Nome Completo">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control item" id="crm" placeholder="CRM">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="especialidade" placeholder="Especialidade">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="telefone" placeholder="Telefone">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="data_nasc" placeholder="Data de Nascimento">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="email" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control item" id="senha" placeholder="Senha">
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block create-account">Registrar</button>
+                    </div>
+                </form>
+
+            </div>
+          </div>
+
+          <div class="block">
+                <section class="intro">
+                    <div class="gradient-custom-1 h-100">
+                        <div class="mask d-flex align-items-center h-100">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="table-responsive bg-white">
+                                <table class="table mb-0  table-striped ">
+                                    <thead class="color">
+                                    <tr>
+                                        <th scope="col">NOME</th>
+                                        <th scope="col">CPF</th>
+                                        <th scope="col">TELEFONE</th>
+                                        <th scope="col">DATA_NASC</th>
+                                        <th scope="col">EMAIL</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <?php
+
+                                       
+                                      $operacao = $_REQUEST ["operacao"]
+                                
+                                      if($operacao== "buscar"){
+                                      $nome = $_POST["nome"];
+
+                                       $sql= "SELECT * FROM cliente WHERE nome like '%$nome%';";
+                                       $res= mysqli_query($mysqli,$sql);
+                                       $linhas= mysqli_num_rows($res);
+
+                                        for ($i = 0; $i < $linhas; $i++){
+                                            $paciente = mysqli_fetch_array ($res);
+
+                                            echo"
                                             <tr>
                                             <td>".$paciente['nome']."</td>
                                             <td>".$paciente['cpf']."</td>
@@ -101,12 +190,36 @@
                                             <td>".$paciente['data_nasc']."</td>
                                             <td>".$paciente['email']."</td>
                                             </tr>";
-                                            }
+                                            
                                         }
-                                        ?>
-                            </tbody>
-                            </table>
+                                    }
+
+                                    ?>
+                                    
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
+                 </section>
                 </div>
-            </body>
-            </html>
+
+    <!-- /#page-content-wrapper -->
+    </div>
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
+</body>
+
+</html>
