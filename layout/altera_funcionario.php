@@ -90,7 +90,7 @@ $funcionario = mysqli_fetch_array ($res);
                     <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo" value="<?php echo $funcionario['nome']?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="cpf" placeholder="CPF" value="<?php echo $funcionario['crm']?>">
+                    <input type="text" required="required" class="form-control item" name="crm" placeholder="CRM" value="<?php echo $funcionario['crm']?>">
                 </div>
                 <div class="form-group">
                     <input type="text" required="required" class="form-control item" name="especialidade" placeholder="Especialidade" value="<?php echo $funcionario['especialidade']?>">
