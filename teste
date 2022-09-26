@@ -32,3 +32,5 @@ else if($operacao== "exibir"){
             </table>
             </div>";
     }
+
+required maxlength="" minlength="" 
