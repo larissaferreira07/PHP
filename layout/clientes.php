@@ -15,7 +15,7 @@
 
 <body>
     <div class="d-flex" id="wrapper">
-        <!-- Sidebar -->
+        <!-- MENU -->
         <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
                 class="fas fa-user-secret me-2"></i>Admin</div>
@@ -34,9 +34,9 @@
              class="fas fa-power-off me-2"></i>Sair</a>
             </div>
         </div>
-        <!-- /#sidebar-wrapper -->
+        <!-- /MENU -->
 
-        <!-- Page Content -->
+        <!-- CONTEÚDO -->
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
@@ -133,7 +133,7 @@
 
 
 
-    <!-- /#page-content-wrapper -->
+    <!-- /CONTEÚDO -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
