@@ -28,7 +28,7 @@
              class="fas fa-clipboard me-2"></i>Funcionários</a>
           <a href="clientes.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
              class="fas fa-users me-2"></i>Clientes</a>
-          <a href="calendario.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
+          <a href="calendario.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
              class="fas fa-calendar me-2"></i>Calendário</a>
           <a href="index.html" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
              class="fas fa-power-off me-2"></i>Sair</a>

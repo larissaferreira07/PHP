@@ -1,3 +1,4 @@
+<?php  include "conecta_mysql.inc"; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -24,7 +25,7 @@
             <div class="list-group list-group-flush my-3">
               <a href="perfil.html" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
                  class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-              <a href="servicos.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+              <a href="servicos.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                  class="fas fa-hospital me-2"></i>Serviços</a>
               <a href="funcionarios.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                  class="fas fa-clipboard me-2"></i>Funcionários</a>
@@ -77,7 +78,7 @@
                 </div>
                 
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                  <a href="cad_funcionario.html" class="destaque">
+                  <a href="#" class="destaque">
                     <div class="img-container mb-3">
                       <img src="_img/Doctors-bro.svg" class="mg-fluid">
                     </div>
@@ -109,20 +110,56 @@
 
 
               <div class="registration-form">
-                <form action="receber_servico.php" method="REQUEST">
-                  <input type="hidden" name="servico" value="servico">
+                <form action="receber_cadfuncionario.php" method="REQUEST">
+                  <input type="hidden" name="cadfuncionario" value="funcionario">
                     <div class="form-icon">
                         <span><i class="icon fas fa-hospital"></i></span>
                     </div>
                     
-                    <h5 class="text-uppercase">Cadastrar Serviço:</h5>
+                    <h5 class="text-uppercase">Cadastrar Funcionário:</h5>
                     <br>
                     <div class="form-group">
-                        <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome">
+                        <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo">
                     </div>
                     <div class="form-group">
-                        <textarea class="textarea--style-6 form-control item" maxlength="120" name="descricao" placeholder="Descrição"></textarea>
+                        <input type="text" required="required" class="form-control item" id="crm" name="crm" placeholder="CRM">
+                        <script type="text/javascript">$("#crm").mask("000000-0");</script>
                     </div>
+                    <div class="form-group">
+                        <select name="especialidade" required="required" class="form item" id="espec">
+                        <option value=''>Especialidade</option>
+                        <?php
+
+                        $sql= "SELECT * FROM especialidade";
+                        $res= mysqli_query($mysqli,$sql);
+                        $linhas= mysqli_num_rows($res);
+
+                        for ($i = 0; $i < $linhas; $i++){
+                            $espec = mysqli_fetch_array ($res);
+
+                            echo"
+                            <option value=".$espec['especialidade'].">".$espec['especialidade']."</option>";
+                            
+                        }
+
+                         ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required="required" class="form-control item" id="telefone" name="telefone" placeholder="Telefone">
+                        <script type="text/javascript">$("#telefone").mask("(00) 00000-0000");</script>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required="required" class="form-control item" name="data_nasc" placeholder="Data de Nascimento">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required="required" class="form-control item" name="email" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" required="required" class="form-control item" name="senha" placeholder="Senha">
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-block create-account">Registrar</button>
                     </div>
                 </form>
