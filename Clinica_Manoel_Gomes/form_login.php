@@ -1,4 +1,9 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
+
 <html lang="pt-br">
   <head>
 
@@ -21,7 +26,7 @@
   <div id="header">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="index.html">
          CLÍNICA MANOEL GOMES
         </a>
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,35 +58,26 @@
     </div>
             
 
+
     <div id="cad_cliente" class="block">
         <div class="container">
 
           <div class="registration-form">
-            <form action="receber_cad.php" method="REQUEST">
-              <input type="hidden" name="cad" value="paciente">
+            <form action="login.php" method="POST">
                 <div class="form-icon">
                     <span><i class="icon far fa-id-card"></i></span>
                 </div>   
-                <h5 class="text-uppercase">Cadastre-se:</h5>
+                <h5 class="text-uppercase">Faça Login:</h5>
+                <?php
+                    if(isset($_SESSION['msg'])){
+                        echo $_SESSION['msg'];
+                        unset($_SESSION['msg']);
+                    }
+                ?>
                 <br>
                 <div class="form-group">  
-                  <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo" maxlength="30">                 
+                  <input type="text" required="required" class="form-control item" name="username" placeholder="Nome de Usuário" maxlength="30">                 
                 </div>
-                <div class="form-group">
-                    <input type="texts" required="required" class="form-control item" id="cpf" name="cpf" placeholder="CPF" maxlength="15">
-                    <script type="text/javascript">$("#cpf").mask("000.000.000-00");</script>
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" id="telefone" name="telefone" maxlength="11" placeholder="Telefone">
-                    <script type="text/javascript">$("#telefone").mask("(00) 00000-0000");</script>
-                </div>
-                <div class="form-group">
-                    <input type="date" required="required" class="form-control item" name="data_nasc" placeholder="Data de Nascimento" maxlength="10">
-                </div>
-                <div class="form-group">
-                    <input type="email" required="required" class="form-control item" name="email" placeholder="Email" maxlength="40">
-                </div>
-
                 <div class="form-group">
                     <input type="password" required="required" class="form-control item" name="senha" placeholder="Senha">
                 </div>

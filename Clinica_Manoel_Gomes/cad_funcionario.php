@@ -1,4 +1,8 @@
-<?php  include "conecta_mysql.inc"; ?>
+<?php 
+include "autentica.php";
+include "conecta_mysql.inc";
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,7 +27,7 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
                     class="fas fa-user-secret me-2"></i>Admin</div>
             <div class="list-group list-group-flush my-3">
-              <a href="perfil.html" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
+              <a href="perfil.php" class="list-group-item list-group-item-action bg-transparent  second-text active"><i
                  class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
               <a href="servicos.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                  class="fas fa-hospital me-2"></i>Serviços</a>
@@ -33,7 +37,7 @@
                  class="fas fa-users me-2"></i>Clientes</a>
               <a href="calendario.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
                  class="fas fa-calendar me-2"></i>Calendário</a>
-              <a href="index.html" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+              <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
                  class="fas fa-power-off me-2"></i>Sair</a>
             </div>
         </div>

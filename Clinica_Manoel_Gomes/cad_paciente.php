@@ -1,3 +1,7 @@
+<?php
+session_start()
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -63,6 +67,14 @@
                     <span><i class="icon far fa-id-card"></i></span>
                 </div>   
                 <h5 class="text-uppercase">Cadastre-se:</h5>
+
+                <?php
+                    if(isset($_SESSION['msg5'])){
+                        echo $_SESSION['msg5'];
+                        unset($_SESSION['msg5']);
+                    }
+                ?>
+
                 <br>
                 <div class="form-group">  
                   <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo" maxlength="30">                 

@@ -1,12 +1,23 @@
-<?php  
+<?php 
+include "autentica.php";
 include "conecta_mysql.inc";
-$cod_funcionario = $_REQUEST ["cod_funcionario"];
-$sql= "SELECT * FROM funcionario WHERE cod_funcionario = $cod_funcionario;";
-$res= mysqli_query($mysqli,$sql);
-$funcionario = mysqli_fetch_array ($res);
+
+if(isset($_SESSION['cod_funcionario'])){
+    $cod_funcionario = $_SESSION["cod_funcionario"];
+    $sql= "SELECT * FROM funcionario WHERE cod_funcionario = $cod_funcionario;";
+    $res= mysqli_query($mysqli,$sql);
+    $funcionario = mysqli_fetch_array ($res);
+
+}
+elseif(empty($_SESSION['cod_funcionario'])){
+    $cod_funcionario = $_REQUEST ["cod_funcionario"];
+    $sql= "SELECT * FROM funcionario WHERE cod_funcionario = $cod_funcionario;";
+    $res= mysqli_query($mysqli,$sql);
+    $funcionario = mysqli_fetch_array ($res);
+
+}
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +41,7 @@ $funcionario = mysqli_fetch_array ($res);
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i
                 class="fas fa-user-secret me-2"></i>Admin</div>
         <div class="list-group list-group-flush my-3">
-          <a href="perfil.html" class="list-group-item list-group-item-action bg-transparent  second-text fw-bold"><i
+          <a href="perfil.php" class="list-group-item list-group-item-action bg-transparent  second-text fw-bold"><i
              class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
           <a href="servicos.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
              class="fas fa-hospital me-2"></i>Serviços</a>
@@ -40,7 +51,7 @@ $funcionario = mysqli_fetch_array ($res);
              class="fas fa-users me-2"></i>Clientes</a>
           <a href="calendario.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
              class="fas fa-calendar me-2"></i>Calendário</a>
-          <a href="index.html" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
+          <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
              class="fas fa-power-off me-2"></i>Sair</a>
             </div>
         </div>
@@ -72,6 +83,12 @@ $funcionario = mysqli_fetch_array ($res);
                 </div>
             </nav>
 
+            <?php
+              if(isset($_SESSION['msg4'])){
+                  echo $_SESSION['msg4'];
+                  unset($_SESSION['msg4']);
+                }
+            ?> 
              
             <div id="cad_cliente" class="block">
          <div class="container">
@@ -106,7 +123,7 @@ $funcionario = mysqli_fetch_array ($res);
                 </div>
 
                 <div class="form-group">
-                    <input type="password" required="required" class="form-control item" name="senha" placeholder="Senha" value="<?php echo  $funcionario['senha']?>">
+                    <input type="password" required="required" class="form-control item" name="senha" placeholder="Senha">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Enviar</button>

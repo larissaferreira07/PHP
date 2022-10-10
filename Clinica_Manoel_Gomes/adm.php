@@ -31,8 +31,8 @@ include "conecta_mysql.inc";
                 class="fas fa-stethoscope me-2"></i>Especialidades</a>
           <a href="funcionarios.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
              class="fas fa-clipboard me-2"></i>Funcionários</a>
-        <a href="adm.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-user-secret me-2"></i>Administradores</a>
-          <a href="clientes.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+        <a href="adm.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i class="fas fa-user-secret me-2"></i>Administradores</a>
+          <a href="clientes.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
              class="fas fa-users me-2"></i>Pacientes</a>
           <a href="calendario.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
              class="fas fa-calendar me-2"></i>Calendário</a>
@@ -69,7 +69,7 @@ include "conecta_mysql.inc";
             </nav>
 
              <div class="buscar">
-                    <form action="buscar_paciente.php" method="POST" class="buscar">
+                    <form action="buscar_adm.php" method="POST" class="buscar">
                         <input name="nome" id="search-input" type="search" id="form1" class="form-control w-25" placeholder="Buscar">
                         <input type="hidden" name="operacao" value="buscar">
                         <button  type="submit" class="btn btn-primary mx-2">
@@ -90,9 +90,9 @@ include "conecta_mysql.inc";
                                     <thead class="color">
                                     <tr>
                                         <th scope="col">NOME</th>
-                                        <th scope="col">CPF</th>
-                                        <th scope="col">TELEFONE</th>
+                                        <th scope="col">USERNAME</th>
                                         <th scope="col">DATA NASC</th>
+                                        <th scope="col">TELEFONE</th>
                                         <th scope="col">EMAIL</th>
                                         <th scope="col">  </th>
                                         <th scope="col">  </th>
@@ -102,24 +102,22 @@ include "conecta_mysql.inc";
 
                                     <?php
 
-
-
-                                        $sql= "SELECT * FROM paciente";
+                                        $sql= "SELECT * FROM administrador";
                                         $res= mysqli_query($mysqli,$sql);
                                         $linhas= mysqli_num_rows($res);
 
                                         for ($i = 0; $i < $linhas; $i++){
-                                            $paciente = mysqli_fetch_array ($res);
+                                            $adm = mysqli_fetch_array ($res);
 
                                             echo"
                                             <tr>
-                                            <td>".$paciente['nome']."</td>
-                                            <td>".$paciente['cpf']."</td>
-                                            <td>".$paciente['telefone']."</td>
-                                            <td>".$paciente['data_nasc']."</td>
-                                            <td>".$paciente['email']."</td>
-                                            <td><a href='altera_cliente.php?cod_paciente=".$paciente["cod_paciente"]."' class='fas fa-edit'></a></td>
-                                            <td><a href='excluir_paciente.php?cod_paciente=".$paciente["cod_paciente"]."' class='fas fa-trash text-danger'></a></td>
+                                            <td>".$adm['nome']."</td>
+                                            <td>".$adm['username']."</td>
+                                            <td>".$adm['data_nasc']."</td>
+                                            <td>".$adm['telefone']."</td>
+                                            <td>".$adm['email']."</td>
+                                            <td><a href='altera_adm.php?cod_admin=".$adm["cod_admin"]."'class='fas fa-edit'></a></td>
+                                            <td><a href='excluir_adm.php?cod_admin=".$adm["cod_admin"]."' class='fas fa-trash text-danger'></a></td>
                                             </tr>";
                                             
                                         }
@@ -139,45 +137,7 @@ include "conecta_mysql.inc";
 
 
 
-    <!-- /CONTEÚDO -->
-    </div>
-
-    <div class="modal modal_altera_paciente">
-        <div class="registration-form">
-            <form action="editar_cliente.php" method="POST">
-                <input type="hidden" name="operacao" value="editar">
-                <input type="hidden" name="cod_paciente" value="<?php echo $cod_paciente?>">
-                <div class="form-icon">
-                    <span><i class="icon far fa-user" align-self-center ></i></span>
-                </div>
-                
-                <h5 class="text-uppercase">Editar Cliente:</h5>
-                <br>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo" value="<?php echo $paciente['nome']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="cpf" placeholder="CPF" value="<?php echo $paciente['cpf']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="telefone" placeholder="Telefone" value="<?php echo $paciente['telefone']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="data_nasc" placeholder="Data de Nascimento" value="<?php echo $paciente['data_nasc']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="email" placeholder="Email" value="<?php echo $paciente['email']?>">
-                </div>
-
-                <div class="form-group">
-                    <input type="password" required="required" class="form-control item" name="senha" placeholder="Senha" value="<?php echo $paciente['senha']?>">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-block create-account">Enviar</button>
-                </div>
-            </form>
-
-        </div>
+    <!-- /CONTEÚDO  -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>

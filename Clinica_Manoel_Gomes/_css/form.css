@@ -48,6 +48,17 @@ body{
     margin-top: 20px;
 }
 
+.registration-form .create-account2{
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #ea2405;
+    border: none;
+    color: white;
+    margin-top: 20px;
+}
+
 .registration-form .social-media{
     max-width: 600px;
     background-color: #fff;
@@ -98,16 +109,18 @@ body{
     }
 }
 
-.number{
-    background-color: #ff914d;
-    color: #fff;
-    height: 30px;
-    width: 30px;
-    display: inline-block;
-    font-size: 0.8em;
-    margin-right: 4px;
-    line-height: 30px;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-    border-radius: 100%;
+.create-account3{
+    border-radius: 13px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: white;
+    border: none;
+    color: #154670;
+    margin-top: 20px;
+}
+
+.create-account3:hover{
+    background-color: rgba(234, 225, 225, 0.955);
+    color: #154570;
 }

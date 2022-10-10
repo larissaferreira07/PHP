@@ -2,24 +2,28 @@
 include "autentica.php";
 include "conecta_mysql.inc";
 
-     $cod_paciente = $_GET ["cod_paciente"];
-     $sql= "SELECT * FROM paciente WHERE cod_paciente = $cod_paciente;";
-     $res= mysqli_query($mysqli,$sql);
-     $paciente = mysqli_fetch_array ($res);
+$cod_espec = $_GET ["cod_especialidade"];
+$sql= "SELECT * FROM especialidade WHERE cod_especialidade = $cod_espec;";
+$res= mysqli_query($mysqli,$sql);
+$espec = mysqli_fetch_array ($res);
 ?>
 
-<html>
-    <head>
-        <title>Edição de Usuário</title>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="v  iewport" content="width=device-width, initial-scale=1.0" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="_css/perfil.css" />
-        <link rel="stylesheet" href="_css/form.css" />
-    </head>
-    
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="v  iewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="_css/perfil.css" />
+    <link rel="stylesheet" href="_css/form.css" />
+
+    <title>Perfil Admin</title>
+</head>
 
 <body>
     <div class="d-flex" id="wrapper">
@@ -30,12 +34,15 @@ include "conecta_mysql.inc";
         <div class="list-group list-group-flush my-3">
           <a href="perfil.php" class="list-group-item list-group-item-action bg-transparent  second-text fw-bold"><i
              class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-          <a href="servicos.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+          <a href="servicos.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
              class="fas fa-hospital me-2"></i>Serviços</a>
-          <a href="funcionarios.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+            <a href="espec.php" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+                class="fas fa-stethoscope me-2"></i>Especialidades</a>
+          <a href="funcionarios.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
              class="fas fa-clipboard me-2"></i>Funcionários</a>
-          <a href="clientes.html" class="list-group-item list-group-item-action bg-transparent second-text active"><i
-             class="fas fa-users me-2"></i>Clientes</a>
+        <a href="adm.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-user-secret me-2"></i>Administradores</a>
+          <a href="clientes.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+             class="fas fa-users me-2"></i>Pacientes</a>
           <a href="calendario.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i 
              class="fas fa-calendar me-2"></i>Calendário</a>
           <a href="logout.php" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold"><i
@@ -61,7 +68,7 @@ include "conecta_mysql.inc";
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link second-text fw-bold" href="clientes.php" id="navbarDropdown"
+                            <a class="nav-link second-text fw-bold" href="espec.php" id="navbarDropdown"
                                 role="button" aria-expanded="false">
                                 <i class="fas fa-arrow-left me-2"></i>Voltar
                             </a>
@@ -70,33 +77,22 @@ include "conecta_mysql.inc";
                 </div>
             </nav>
 
-            <div id="cad_cliente" class="block">
+             
+            <div id="altera_espec" class="block">
          <div class="container">
 
           <div class="registration-form">
-            <form action="editar_cliente.php" method="POST">
+            <form action="editar_espec.php" method="POST">
                 <input type="hidden" name="operacao" value="editar">
-                <input type="hidden" name="cod_paciente" value="<?php echo $cod_paciente?>">
+                <input type="hidden" name="cod_espec" value="<?php echo $cod_espec?>">
                 <div class="form-icon">
-                    <span><i class="icon far fa-user" align-self-center ></i></span>
+                    <span><i class="icon far fa-hospital" align-self-center ></i></span>
                 </div>
                 
-                <h5 class="text-uppercase">Editar Cliente:</h5>
+                <h5 class="text-uppercase">Editar Especialidade:</h5>
                 <br>
                 <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="nome" placeholder="Nome Completo" value="<?php echo $paciente['nome']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="cpf" placeholder="CPF" value="<?php echo $paciente['cpf']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="telefone" placeholder="Telefone" value="<?php echo $paciente['telefone']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="data_nasc" placeholder="Data de Nascimento" value="<?php echo $paciente['data_nasc']?>">
-                </div>
-                <div class="form-group">
-                    <input type="text" required="required" class="form-control item" name="email" placeholder="Email" value="<?php echo $paciente['email']?>">
+                    <input type="text" required="required" class="form-control item" name="especialidade" placeholder="Especialidade" value="<?php echo $espec['especialidade']?>">
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Enviar</button>
@@ -105,6 +101,9 @@ include "conecta_mysql.inc";
 
         </div>
       </div>
+
+
+
     <!-- /CONTEÚDO -->
     </div>
 
@@ -117,6 +116,6 @@ include "conecta_mysql.inc";
             el.classList.toggle("toggled");
         };
     </script>
+</body>
 
-    </body>
 </html>
